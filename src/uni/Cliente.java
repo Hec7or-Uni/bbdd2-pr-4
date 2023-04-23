@@ -1,0 +1,139 @@
+package uni;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+
+@Entity
+public class Cliente {
+
+	@Id
+	@Column(name = "DNI")
+	private String dni;
+	
+	@Column(name = "NOMBRE")
+	private String nombre;
+	
+	@Column(name = "APELLIDO")
+	private String apellido;
+
+	@Column(name = "EMAIL")
+	private String email;
+	
+	@Column(name = "TELEFONO")
+	private String telefono;
+	
+	@Column(name = "FECHA_NACIMIENTO")
+	private String fechaNacimiento;
+
+	@Column(name = "DIRECCION")
+	private String direccion;
+
+	@Column(name = "EDAD")
+	private int edad;
+
+	@ManyToMany
+	@JoinTable(name = "Tienen",
+			joinColumns = @JoinColumn(name = "DNI"),
+			inverseJoinColumns = @JoinColumn(name = "IBAN"))
+	private Set<Cuenta> cuentas;
+
+	// ----------------- Getters & Setters -----------------
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public Set<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(Set<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
+
+	// ----------------- HashCode & Equals -----------------
+
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return true;
+	}
+
+	public String toString() {
+		String res = super.toString();
+		res += "DNI: " + dni + System.getProperty("line.separator");
+		res += "DNI: " + dni + System.getProperty("line.separator");
+		return res;
+	}
+
+}
