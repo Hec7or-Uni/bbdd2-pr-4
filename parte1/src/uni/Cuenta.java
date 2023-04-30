@@ -14,11 +14,8 @@ import javax.persistence.OneToMany;
 public abstract class Cuenta {
 
 	@Id
-<<<<<<< HEAD
-	@Column(name = "IBAN")
-=======
+
 	@Column
->>>>>>> d3af92194bdf593ee205f52c0fe032b7b9286f1a
 	private String iban;
 	
 	@Column
@@ -39,13 +36,8 @@ public abstract class Cuenta {
 		return iban;
 	}
 
-<<<<<<< HEAD
-	public void setIban(String string) {
-		this.iban = string;
-=======
 	public void setIban(String iban) {
 		this.iban = iban;
->>>>>>> d3af92194bdf593ee205f52c0fe032b7b9286f1a
 	}
 
 	public String getFechaCreacion() {
