@@ -14,13 +14,13 @@ import javax.persistence.OneToMany;
 public abstract class Cuenta {
 
 	@Id
-	@Column(name = "IBAN")
-	private Integer iban;
+	@Column
+	private String iban;
 	
-	@Column(name = "FECHA_CREACION")
+	@Column
 	private String fechaCreacion;
 	
-	@Column(name = "SALDO")
+	@Column
 	private Double saldo;
 
 	@ManyToMany(mappedBy = "cuentas")
@@ -31,11 +31,11 @@ public abstract class Cuenta {
 	
 	// ----------------- Getters & Setters -----------------
 
-	public Integer getIban() {
+	public String getIban() {
 		return iban;
 	}
 
-	public void setIban(Integer iban) {
+	public void setIban(String iban) {
 		this.iban = iban;
 	}
 
