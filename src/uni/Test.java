@@ -13,10 +13,15 @@ public class Test {
 	
 	public void prueba() {
 
-		/*
 		Cliente c1 = new Cliente();
-		c1.setApellido("Perez");
-		*/
+		c1.setDni("88184985G");
+		c1.setNombre("Rance");
+		c1.setApellido("Bedle");
+		c1.setEmail("rbedle0@bravesites.com");
+		c1.setTelefono("+34 935-332-576");
+		c1.setDireccion("8230 Elmside Center");
+		c1.setEdad(51);
+		c1.setFechaNacimiento("12-06-1971");
 
 	}
 	

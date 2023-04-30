@@ -147,5 +147,4 @@ public class Cliente {
 				+ ", edad=" + edad + ", cuentas=" + cuentas + "]";
 	}
 
-
 }
