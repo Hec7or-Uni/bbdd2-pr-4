@@ -1,5 +1,7 @@
 package uni;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -8,7 +10,7 @@ public class Ahorro extends Cuenta {
 
 	@Column(name = "Interes")
 	private Double interes;
-
+	
 	// ----------------- Getters & Setters -----------------
 
 	public Double getInteres() {
@@ -23,18 +25,27 @@ public class Ahorro extends Cuenta {
 
 	@Override
 	public int hashCode() {
-		return 1;
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(interes);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return true;
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ahorro other = (Ahorro) obj;
+		return Objects.equals(interes, other.interes);
 	}
 
+	@Override
 	public String toString() {
-		String res = super.toString();
-		res += "Interes: " + interes + System.getProperty("line.separator");
-		return res;
+		return "Ahorro [interes=" + interes + "]";
 	}
 
 }

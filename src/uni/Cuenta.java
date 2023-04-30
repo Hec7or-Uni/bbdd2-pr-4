@@ -1,11 +1,13 @@
 package uni;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,9 +26,9 @@ public abstract class Cuenta {
 	@ManyToMany(mappedBy = "cuentas")
 	private Set<Cliente> clientes;
 
-	@OneToMany(mappedBy = "cuenta")
+	@OneToMany(mappedBy = "cuentaOrigen")
     private Set<Operacion> operaciones;
-
+	
 	// ----------------- Getters & Setters -----------------
 
 	public Integer getIban() {
@@ -68,21 +70,32 @@ public abstract class Cuenta {
 	public void setOperaciones(Set<Operacion> operaciones) {
 		this.operaciones = operaciones;
 	}
-
+	
 	// ----------------- HashCode & Equals -----------------
 
 	@Override
 	public int hashCode() {
-		return 1;
+		return Objects.hash(clientes, fechaCreacion, iban, operaciones, saldo);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return true;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cuenta other = (Cuenta) obj;
+		return Objects.equals(clientes, other.clientes) && Objects.equals(fechaCreacion, other.fechaCreacion)
+				&& Objects.equals(iban, other.iban) && Objects.equals(operaciones, other.operaciones)
+				&& Objects.equals(saldo, other.saldo);
 	}
 
+	@Override
 	public String toString() {
-		return "";
+		return "Cuenta [iban=" + iban + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", clientes="
+				+ clientes + ", operaciones=" + operaciones + "]";
 	}
 
 }

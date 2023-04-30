@@ -1,7 +1,9 @@
 package uni;
 
+import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,9 +22,9 @@ public class Oficina {
 	@Column(name = "DIRECCION")
 	private String direccion;
 
-	@OneToMany(mappedBy = "oficina")
+	@OneToMany(mappedBy = "oficina", cascade = CascadeType.ALL.ALL)
 	private Set<Corriente> cuentasCorrientes;
-
+	
 	// ----------------- Getters & Setters -----------------
 
 	public Integer getCodigo() {
@@ -56,21 +58,30 @@ public class Oficina {
 	public void setCuentasCorrientes(Set<Corriente> cuentasCorrientes) {
 		this.cuentasCorrientes = cuentasCorrientes;
 	}
-
+	
 	// ----------------- HashCode & Equals -----------------
 
 	@Override
 	public int hashCode() {
-		return 1;
+		return Objects.hash(codigo, cuentasCorrientes, direccion, telefono);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return true;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Oficina other = (Oficina) obj;
+		return Objects.equals(codigo, other.codigo) && Objects.equals(cuentasCorrientes, other.cuentasCorrientes)
+				&& Objects.equals(direccion, other.direccion) && Objects.equals(telefono, other.telefono);
 	}
 
+	@Override
 	public String toString() {
-		return "";
+		return "Oficina [codigo=" + codigo + ", telefono=" + telefono + ", direccion=" + direccion
+				+ ", cuentasCorrientes=" + cuentasCorrientes + "]";
 	}
-
 }

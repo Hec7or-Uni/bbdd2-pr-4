@@ -1,5 +1,6 @@
 package uni;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -116,24 +117,35 @@ public class Cliente {
 	public void setCuentas(Set<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
-
+	
 	// ----------------- HashCode & Equals -----------------
 
 	@Override
 	public int hashCode() {
-		return 1;
+		return Objects.hash(apellido, cuentas, direccion, dni, edad, email, fechaNacimiento, nombre, telefono);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return true;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(apellido, other.apellido) && Objects.equals(cuentas, other.cuentas)
+				&& Objects.equals(direccion, other.direccion) && Objects.equals(dni, other.dni) && edad == other.edad
+				&& Objects.equals(email, other.email) && Objects.equals(fechaNacimiento, other.fechaNacimiento)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(telefono, other.telefono);
 	}
 
+	@Override
 	public String toString() {
-		String res = super.toString();
-		res += "DNI: " + dni + System.getProperty("line.separator");
-		res += "DNI: " + dni + System.getProperty("line.separator");
-		return res;
+		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
+				+ ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion
+				+ ", edad=" + edad + ", cuentas=" + cuentas + "]";
 	}
+
 
 }

@@ -1,5 +1,7 @@
 package uni;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,8 +24,8 @@ public abstract class Operacion {
 	private Double cantidad;
 
 	@ManyToOne
-	private Cuenta cuenta;
-
+	private Cuenta cuentaOrigen;
+	
 	// ----------------- Getters & Setters -----------------
 
 	public String getCodigo() {
@@ -58,23 +60,39 @@ public abstract class Operacion {
 		this.cantidad = cantidad;
 	}
 
-	public Cuenta getCuenta() {
-		return cuenta;
+	public Cuenta getCuentaOrigen() {
+		return cuentaOrigen;
 	}
 
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
+	public void setCuentaOrigen(Cuenta cuentaOrigen) {
+		this.cuentaOrigen = cuentaOrigen;
 	}
-
+	
 	// ----------------- HashCode & Equals -----------------
 
 	@Override
 	public int hashCode() {
-		return 1;
+		return Objects.hash(cantidad, codigo, cuentaOrigen, fechaCreacion, fechaYHora);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return true;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Operacion other = (Operacion) obj;
+		return Objects.equals(cantidad, other.cantidad) && Objects.equals(codigo, other.codigo)
+				&& Objects.equals(cuentaOrigen, other.cuentaOrigen)
+				&& Objects.equals(fechaCreacion, other.fechaCreacion) && Objects.equals(fechaYHora, other.fechaYHora);
 	}
+
+	@Override
+	public String toString() {
+		return "Operacion [codigo=" + codigo + ", fechaCreacion=" + fechaCreacion + ", fechaYHora=" + fechaYHora
+				+ ", cantidad=" + cantidad + ", cuentaOrigen=" + cuentaOrigen + "]";
+	}
+	
 }
