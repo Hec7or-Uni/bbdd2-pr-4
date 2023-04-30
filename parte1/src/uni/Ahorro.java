@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class Ahorro extends Cuenta {
 
-	@Column(name = "Interes")
+	@Column
 	private Double interes;
 	
 	// ----------------- Getters & Setters -----------------

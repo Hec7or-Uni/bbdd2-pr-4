@@ -11,16 +11,16 @@ import javax.persistence.ManyToOne;
 public abstract class Operacion {
 
 	@Id
-	@Column(name = "CODIGO")
+	@Column
 	private String codigo;
 	
-	@Column(name = "DESCRIPCION")
-	private String fechaCreacion;
+	@Column
+	private String descripcion;
 	
-	@Column(name = "FECHA_Y_HORA")
+	@Column
 	private String fechaYHora;
 
-	@Column(name = "CANTIDAD")
+	@Column
 	private Double cantidad;
 
 	@ManyToOne
@@ -36,12 +36,12 @@ public abstract class Operacion {
 		this.codigo = codigo;
 	}
 
-	public String getFechaCreacion() {
-		return fechaCreacion;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setFechaCreacion(String fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getFechaYHora() {
@@ -72,7 +72,7 @@ public abstract class Operacion {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cantidad, codigo, cuentaOrigen, fechaCreacion, fechaYHora);
+		return Objects.hash(cantidad, codigo, cuentaOrigen, descripcion, fechaYHora);
 	}
 
 	@Override
@@ -86,12 +86,12 @@ public abstract class Operacion {
 		Operacion other = (Operacion) obj;
 		return Objects.equals(cantidad, other.cantidad) && Objects.equals(codigo, other.codigo)
 				&& Objects.equals(cuentaOrigen, other.cuentaOrigen)
-				&& Objects.equals(fechaCreacion, other.fechaCreacion) && Objects.equals(fechaYHora, other.fechaYHora);
+				&& Objects.equals(descripcion, other.descripcion) && Objects.equals(fechaYHora, other.fechaYHora);
 	}
 
 	@Override
 	public String toString() {
-		return "Operacion [codigo=" + codigo + ", fechaCreacion=" + fechaCreacion + ", fechaYHora=" + fechaYHora
+		return "Operacion [codigo=" + codigo + ", descripcion=" + descripcion + ", fechaYHora=" + fechaYHora
 				+ ", cantidad=" + cantidad + ", cuentaOrigen=" + cuentaOrigen + "]";
 	}
 	

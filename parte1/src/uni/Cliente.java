@@ -14,28 +14,28 @@ import javax.persistence.JoinColumn;
 public class Cliente {
 
 	@Id
-	@Column(name = "DNI")
+	@Column
 	private String dni;
 	
-	@Column(name = "NOMBRE")
+	@Column
 	private String nombre;
 	
-	@Column(name = "APELLIDO")
+	@Column
 	private String apellido;
 
-	@Column(name = "EMAIL")
+	@Column
 	private String email;
 	
-	@Column(name = "TELEFONO")
+	@Column
 	private String telefono;
 	
-	@Column(name = "FECHA_NACIMIENTO")
+	@Column
 	private String fechaNacimiento;
 
-	@Column(name = "DIRECCION")
+	@Column
 	private String direccion;
 
-	@Column(name = "EDAD")
+	@Column
 	private int edad;
 
 	@ManyToMany

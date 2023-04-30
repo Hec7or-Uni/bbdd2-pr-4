@@ -13,13 +13,13 @@ import javax.persistence.OneToMany;
 public class Oficina {
 
 	@Id
-	@Column(name = "CODIGO")
+	@Column
 	private Integer codigo;
 	
-	@Column(name = "TELEFONO")
+	@Column
 	private String telefono;
 	
-	@Column(name = "DIRECCION")
+	@Column
 	private String direccion;
 
 	@OneToMany(mappedBy = "oficina", cascade = CascadeType.ALL.ALL)
