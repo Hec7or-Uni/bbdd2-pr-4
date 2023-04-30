@@ -15,7 +15,7 @@ public abstract class Cuenta {
 
 	@Id
 	@Column(name = "IBAN")
-	private Integer iban;
+	private String iban;
 	
 	@Column(name = "FECHA_CREACION")
 	private String fechaCreacion;
@@ -31,12 +31,12 @@ public abstract class Cuenta {
 	
 	// ----------------- Getters & Setters -----------------
 
-	public Integer getIban() {
+	public String getIban() {
 		return iban;
 	}
 
-	public void setIban(Integer iban) {
-		this.iban = iban;
+	public void setIban(String string) {
+		this.iban = string;
 	}
 
 	public String getFechaCreacion() {

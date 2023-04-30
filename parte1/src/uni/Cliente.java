@@ -1,8 +1,8 @@
 package uni;
 
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -43,6 +43,9 @@ public class Cliente {
 			joinColumns = @JoinColumn(name = "DNI"),
 			inverseJoinColumns = @JoinColumn(name = "IBAN"))
 	private Set<Cuenta> cuentas;
+	
+//	@ManyToMany(cascade = {CascadeType.PERSIST})
+//	private Set<Cuenta> cuentas = new HashSet<Cuenta>();
 
 	// ----------------- Getters & Setters -----------------
 
@@ -110,12 +113,16 @@ public class Cliente {
 		this.edad = edad;
 	}
 
-	public Set<Cuenta> getCuentas() {
-		return cuentas;
+	public void addCuenta(Cuenta c) {
+		cuentas.add(c);
 	}
-
-	public void setCuentas(Set<Cuenta> cuentas) {
-		this.cuentas = cuentas;
+	
+	public int totalCuentas() {
+		return cuentas.size();
+	}
+	
+	public void removeCuenta(Cuenta c) {
+		cuentas.remove(c);
 	}
 	
 	// ----------------- HashCode & Equals -----------------
