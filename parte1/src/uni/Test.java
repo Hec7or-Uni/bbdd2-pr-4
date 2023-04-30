@@ -136,8 +136,8 @@ public class Test {
 		Set<Corriente> pack_cuentas_1 = new HashSet<Corriente>();
 		pack_cuentas_1.addAll(Arrays.asList(new Corriente[] { cu1, cu2 }));
         
-        Set<Corriente> pack_cuentas_2 = new HashSet<Corriente>();
-        pack_cuentas_2.addAll(Arrays.asList(new Corriente[] { cu5, cu6 }));
+		Set<Corriente> pack_cuentas_2 = new HashSet<Corriente>();
+		pack_cuentas_2.addAll(Arrays.asList(new Corriente[] { cu5, cu6 }));
 		
 		// ------------------------------
 		
