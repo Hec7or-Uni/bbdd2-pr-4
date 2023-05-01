@@ -60,18 +60,6 @@ public class Test {
 		c4.setEdad(42);
 		c4.setFechaNacimiento("30-08-1980");
 		
-        Set<Cliente> pack_clientes_1 = new HashSet<Cliente>();
-        pack_clientes_1.addAll(Arrays.asList(new Cliente[] { c1 }));
-        
-        Set<Cliente> pack_clientes_2 = new HashSet<Cliente>();
-        pack_clientes_2.addAll(Arrays.asList(new Cliente[] { c2 }));
-        
-        Set<Cliente> pack_clientes_3 = new HashSet<Cliente>();
-        pack_clientes_3.addAll(Arrays.asList(new Cliente[] { c3 }));
-        
-        Set<Cliente> pack_clientes_4 = new HashSet<Cliente>();
-        pack_clientes_4.addAll(Arrays.asList(new Cliente[] { c1, c3, c4 }));
-		
 		// ------------------------------
 		// OFICINAS
 		// ------------------------------
@@ -96,42 +84,46 @@ public class Test {
 		cu1.setIban("CH50 5682 234S RJST SUTP Z");
 		cu1.setSaldo(145826.21);
 		cu1.setOficina(o1);	// <--- 
-		cu1.setClientes(pack_clientes_1);	// <--- SET
+		cu1.addCliente(c1);	// <--- SET
 		
 		Corriente cu2 = new Corriente();
 		cu2.setFechaCreacion("2004-06-17T16:45:02Z");
 		cu2.setIban("FO20 5755 0074 4797 91");
 		cu2.setSaldo(98271.15);
 		cu2.setOficina(o1);	// <--- 
-		cu2.setClientes(pack_clientes_4);	// <--- SET
+		cu2.addCliente(c1);	// <--- SET
+		cu2.addCliente(c3);
+		cu2.addCliente(c4);
 		
 		Ahorro cu3 = new Ahorro();
 		cu3.setFechaCreacion("1964-06-13T06:44:46Z");
 		cu3.setIban("GB82 NGSO 1349 7644 9432 24");
 		cu3.setSaldo(295971.51);
 		cu3.setInteres(0.444);
-		cu3.setClientes(pack_clientes_3);	// <--- SET
+		cu3.addCliente(c3);	// <--- SET
 		
 		Ahorro cu4 = new Ahorro();
 		cu4.setFechaCreacion("1965-10-08T02:24:54Z");
 		cu4.setIban("FI74 9078 9407 6036 45");
 		cu4.setSaldo(134630.38);
 		cu4.setInteres(0.203);
-		cu4.setClientes(pack_clientes_2);	// <--- SET
+		cu4.addCliente(c2);	// <--- SET
 		
 		Corriente cu5 = new Corriente();
 		cu5.setFechaCreacion("1986-01-13T16:05:19Z");
 		cu5.setIban("BH55 XYLN 0PSK PCO0 FNEP ZT");
 		cu5.setSaldo(272926.64);
 		cu5.setOficina(o2);	// <--- 
-		cu5.setClientes(pack_clientes_4);	// <--- SET
+		cu5.addCliente(c1);	// <--- SET
+		cu5.addCliente(c3);
+		cu5.addCliente(c4);
 		
 		Corriente cu6 = new Corriente();
 		cu6.setFechaCreacion("1974-08-12T18:19:19Z");
 		cu6.setIban("BE31 2205 7718 0279");
 		cu6.setSaldo(273225.80);
 		cu6.setOficina(o2);	// <--- 
-		cu6.setClientes(pack_clientes_1);	// <--- SET
+		cu6.addCliente(c1);	// <--- SET
 		
 		Set<Corriente> pack_cuentas_1 = new HashSet<Corriente>();
 		pack_cuentas_1.addAll(Arrays.asList(new Corriente[] { cu1, cu2 }));
@@ -141,8 +133,10 @@ public class Test {
 		
 		// ------------------------------
 		
-		o1.setCuentasCorrientes(pack_cuentas_1);	// <--- SET
-		o2.setCuentasCorrientes(pack_cuentas_2);	// <--- SET
+		o1.addCuentaCorriente(cu1);
+		o1.addCuentaCorriente(cu2);
+		o2.addCuentaCorriente(cu5);
+		o2.addCuentaCorriente(cu6);
 		
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();

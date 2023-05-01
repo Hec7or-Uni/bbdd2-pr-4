@@ -2,6 +2,7 @@ package uni;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.HashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ public class Oficina {
 	private String direccion;
 
 	@OneToMany(mappedBy = "oficina", cascade = CascadeType.ALL.ALL)
-	private Set<Corriente> cuentasCorrientes;
+	private Set<Corriente> cuentasCorrientes = new HashSet<Corriente> ();
 	
 	// ----------------- Getters & Setters -----------------
 
@@ -51,19 +52,25 @@ public class Oficina {
 		this.direccion = direccion;
 	}
 
-	public Set<Corriente> getCuentasCorrientes() {
-		return cuentasCorrientes;
-	}
-
-	public void setCuentasCorrientes(Set<Corriente> cuentasCorrientes) {
-		this.cuentasCorrientes = cuentasCorrientes;
+	public void addCuentaCorriente(Corriente t) {
+		cuentasCorrientes.add(t);
 	}
 	
+	public int totalCuentasCorrientes() {
+		return cuentasCorrientes.size();
+	}
+	
+	public void removeCuentaCorriente(Corriente t) {
+		cuentasCorrientes.remove(t);
+	}
 	// ----------------- HashCode & Equals -----------------
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigo, cuentasCorrientes, direccion, telefono);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
 	}
 
 	@Override
@@ -75,8 +82,27 @@ public class Oficina {
 		if (getClass() != obj.getClass())
 			return false;
 		Oficina other = (Oficina) obj;
-		return Objects.equals(codigo, other.codigo) && Objects.equals(cuentasCorrientes, other.cuentasCorrientes)
-				&& Objects.equals(direccion, other.direccion) && Objects.equals(telefono, other.telefono);
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		if (cuentasCorrientes == null) {
+			if (other.cuentasCorrientes != null)
+				return false;
+		} else if (!cuentasCorrientes.equals(other.cuentasCorrientes))
+			return false;
+		if (direccion == null) {
+			if (other.direccion != null)
+				return false;
+		} else if (!direccion.equals(other.direccion))
+			return false;
+		if (telefono == null) {
+			if (other.telefono != null)
+				return false;
+		} else if (!telefono.equals(other.telefono))
+			return false;
+		return true;
 	}
 
 	@Override

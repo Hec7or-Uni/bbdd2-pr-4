@@ -28,7 +28,7 @@ public class Corriente extends Cuenta {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(oficina);
+		result = prime * result + oficina.hashCode();
 		return result;
 	}
 

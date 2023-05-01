@@ -2,7 +2,9 @@ package uni;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +16,6 @@ import javax.persistence.OneToMany;
 public abstract class Cuenta {
 
 	@Id
-
 	@Column
 	private String iban;
 	
@@ -23,9 +24,9 @@ public abstract class Cuenta {
 	
 	@Column
 	private Double saldo;
-
-	@ManyToMany(mappedBy = "cuentas")
-	private Set<Cliente> clientes;
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST})
+	private Set<Cliente> clientes = new HashSet<Cliente>();
 
 	@OneToMany(mappedBy = "cuentaOrigen")
     private Set<Operacion> operaciones;
@@ -56,12 +57,16 @@ public abstract class Cuenta {
 		this.saldo = saldo;
 	}
 
-	public Set<Cliente> getClientes() {
-		return clientes;
+	public void addCliente(Cliente a) {
+		clientes.add(a);
 	}
-
-	public void setClientes(Set<Cliente> clientes) {
-		this.clientes = clientes;
+	
+	public int totalAsignaturas() {
+		return clientes.size();
+	}
+	
+	public void removeAsignatura(Cliente a) {
+		clientes.remove(a);
 	}
 
 	public Set<Operacion> getOperaciones() {
@@ -76,7 +81,10 @@ public abstract class Cuenta {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(clientes, fechaCreacion, iban, operaciones, saldo);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((iban == null) ? 0 : iban.hashCode());
+		return result;
 	}
 
 	@Override
@@ -88,9 +96,32 @@ public abstract class Cuenta {
 		if (getClass() != obj.getClass())
 			return false;
 		Cuenta other = (Cuenta) obj;
-		return Objects.equals(clientes, other.clientes) && Objects.equals(fechaCreacion, other.fechaCreacion)
-				&& Objects.equals(iban, other.iban) && Objects.equals(operaciones, other.operaciones)
-				&& Objects.equals(saldo, other.saldo);
+		if (clientes == null) {
+			if (other.clientes != null)
+				return false;
+		} else if (!clientes.equals(other.clientes))
+			return false;
+		if (fechaCreacion == null) {
+			if (other.fechaCreacion != null)
+				return false;
+		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (iban == null) {
+			if (other.iban != null)
+				return false;
+		} else if (!iban.equals(other.iban))
+			return false;
+		if (operaciones == null) {
+			if (other.operaciones != null)
+				return false;
+		} else if (!operaciones.equals(other.operaciones))
+			return false;
+		if (saldo == null) {
+			if (other.saldo != null)
+				return false;
+		} else if (!saldo.equals(other.saldo))
+			return false;
+		return true;
 	}
 
 	@Override

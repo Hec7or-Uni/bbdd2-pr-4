@@ -38,15 +38,6 @@ public class Cliente {
 	@Column
 	private int edad;
 
-	@ManyToMany
-	@JoinTable(name = "Tienen",
-			joinColumns = @JoinColumn(name = "DNI"),
-			inverseJoinColumns = @JoinColumn(name = "IBAN"))
-	private Set<Cuenta> cuentas;
-	
-//	@ManyToMany(cascade = {CascadeType.PERSIST})
-//	private Set<Cuenta> cuentas = new HashSet<Cuenta>();
-
 	// ----------------- Getters & Setters -----------------
 
 	public String getDni() {
@@ -112,24 +103,12 @@ public class Cliente {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-
-	public void addCuenta(Cuenta c) {
-		cuentas.add(c);
-	}
-	
-	public int totalCuentas() {
-		return cuentas.size();
-	}
-	
-	public void removeCuenta(Cuenta c) {
-		cuentas.remove(c);
-	}
 	
 	// ----------------- HashCode & Equals -----------------
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellido, cuentas, direccion, dni, edad, email, fechaNacimiento, nombre, telefono);
+		return Objects.hash(apellido, direccion, dni, edad, email, fechaNacimiento, nombre, telefono);
 	}
 
 	@Override
@@ -141,7 +120,7 @@ public class Cliente {
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
-		return Objects.equals(apellido, other.apellido) && Objects.equals(cuentas, other.cuentas)
+		return Objects.equals(apellido, other.apellido)
 				&& Objects.equals(direccion, other.direccion) && Objects.equals(dni, other.dni) && edad == other.edad
 				&& Objects.equals(email, other.email) && Objects.equals(fechaNacimiento, other.fechaNacimiento)
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(telefono, other.telefono);
@@ -151,7 +130,7 @@ public class Cliente {
 	public String toString() {
 		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
 				+ ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion
-				+ ", edad=" + edad + ", cuentas=" + cuentas + "]";
+				+ ", edad=" + edad + "]";
 	}
 
 }
