@@ -2,10 +2,12 @@ package uni;
 
 import java.util.Objects;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
+@DiscriminatorValue("TRANSFERENCIA")
 public abstract class Transferencia extends Operacion {
 
 	@ManyToOne

@@ -3,13 +3,21 @@ package uni;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity(name = "Ahorro")
+@Entity
+@DiscriminatorValue("AHORRO")
 public class Ahorro extends Cuenta {
 
-	@Column(name = "interes")
+	@Column(name="interes", nullable=false)
 	private Double interes;
+	
+	@ManyToOne
+	@JoinColumn(name="oficina", nullable=true)
+	private Oficina oficina;
 	
 	// ----------------- Getters & Setters -----------------
 

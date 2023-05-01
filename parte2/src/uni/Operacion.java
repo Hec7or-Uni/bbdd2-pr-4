@@ -1,13 +1,18 @@
 package uni;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "OPERACIOMES")
+@Entity(name = "OPERACIONES")
+@DiscriminatorColumn(name="tipoOp", 
+discriminatorType = DiscriminatorType.STRING)
 public abstract class Operacion {
 
 	@Id
@@ -18,7 +23,7 @@ public abstract class Operacion {
 	private Double cantidad;
 	
 	@Column(name = "timestamp")
-	private String fechaYHora;
+	private Timestamp fechaYHora;
 	
 	@Column(name = "descripcion")
 	private String descripcion;
@@ -44,11 +49,11 @@ public abstract class Operacion {
 		this.descripcion = fechaCreacion;
 	}
 
-	public String getFechaYHora() {
+	public Timestamp getFechaYHora() {
 		return fechaYHora;
 	}
 
-	public void setFechaYHora(String fechaYHora) {
+	public void setFechaYHora(Timestamp fechaYHora) {
 		this.fechaYHora = fechaYHora;
 	}
 

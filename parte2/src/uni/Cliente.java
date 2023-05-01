@@ -2,6 +2,8 @@ package uni;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.Date;
+import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +32,7 @@ public class Cliente {
 	private String telefono;
 	
 	@Column(name = "fechaNacimiento")
-	private String fechaNacimiento;
+	private Date fechaNacimiento;
 
 	@Column(name = "direccion")
 	private String direccion;
@@ -42,7 +44,7 @@ public class Cliente {
 	@JoinTable(name = "TIENEN",
 			joinColumns = @JoinColumn(name = "DNI"),
 			inverseJoinColumns = @JoinColumn(name = "IBAN"))
-	private Set<Cuenta> cuentas;
+	private Set<Cuenta> cuentas = new HashSet<Cuenta> ();
 
 	// ----------------- Getters & Setters -----------------
 
@@ -86,11 +88,11 @@ public class Cliente {
 		this.telefono = telefono;
 	}
 
-	public String getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -110,12 +112,16 @@ public class Cliente {
 		this.edad = edad;
 	}
 
-	public Set<Cuenta> getCuentas() {
-		return cuentas;
+	public void addCuenta(Cuenta c) {
+		cuentas.add(c);
 	}
 
-	public void setCuentas(Set<Cuenta> cuentas) {
-		this.cuentas = cuentas;
+	public int totalCuentas() {
+		return cuentas.size();
+	}
+
+	public void removeCuenta(Cuenta c) {
+		cuentas.remove(c);
 	}
 	
 	// ----------------- HashCode & Equals -----------------
