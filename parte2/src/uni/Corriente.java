@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Corriente extends Cuenta {
 
 	@ManyToOne
-	@JoinColumn(name="oficina", nullable=false)
+	@JoinColumn(name="oficina")
 	private Oficina oficina;
 
 	// ----------------- Getters & Setters -----------------

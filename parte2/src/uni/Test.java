@@ -219,8 +219,9 @@ public class Test {
 		}
 	}
 		
-	public void query1() {
-		String q = "select distinct c.nombre from CLIENTES c JOIN c.cuentas cu WHERE c.edad > ?1 AND cu.saldo > ?2";
+	// Devuelve el nombre de aquellos clientes cuya edad es > X y saldo > y
+	public void JPQL() {
+		String q = "SELECT DISTINCT c.nombre FROM CLIENTES c JOIN c.cuentas cu WHERE c.edad > ?1 AND cu.saldo > ?2";
 		Query query = em.createQuery(q);
 		query.setParameter(1, 50);
 		query.setParameter(2, 200000.0);
@@ -230,8 +231,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 		Test t = new Test();
-		//t.poblate();
-		t.query1();
+		t.poblate();
+		t.JPQL();
 	}
-
 }

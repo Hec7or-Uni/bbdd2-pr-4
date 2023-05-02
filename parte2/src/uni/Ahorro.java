@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue("AHORRO")
 public class Ahorro extends Cuenta {
 
-	@Column(name="interes", nullable=false)
+	@Column(name="interes")
 	private Double interes;
 	
 	// ----------------- Getters & Setters -----------------

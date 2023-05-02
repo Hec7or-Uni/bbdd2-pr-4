@@ -25,7 +25,7 @@ public abstract class Cuenta {
 	@Column
 	private Double saldo;
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST})
+	@ManyToMany(cascade = {CascadeType.ALL})
 	private Set<Cliente> clientes = new HashSet<Cliente>();
 
 	@OneToMany(mappedBy = "cuentaOrigen")

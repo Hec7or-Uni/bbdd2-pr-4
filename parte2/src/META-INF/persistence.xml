@@ -6,34 +6,11 @@
 		<properties>
 		   <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle8iDialect" />
 		   <property name="hibernate.show_sql" value="true"/>		
-		   <property name="hibernate.hbm2ddl.auto" value="update"/>
-		   
-		   <!-- <property name="hibernate.default_schema" value="public"/> -->
-		   
-		   <!-- ORACLE -->
-		   <!-- ++++++ -->
-		   
-		   <!-- En lugar de "usuario" poned vuestro nombre de usuario, y en lugar de "password" vuestra contraseña. !-->
-		   
+		   <property name="hibernate.hbm2ddl.auto" value="create"/>
 		   <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
 		   <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
 		   <property name="javax.persistence.jdbc.user" value="system"/>
 		   <property name="javax.persistence.jdbc.password" value="oracle"/>
-		   
-		   
-		   <!-- MYSQL -->
-		   <!-- +++++ -->
-		   
-		   <!-- En lugar de "usuario" poned vuestro nombre de usuario, y en lugar de "password" vuestra contrase�a. !-->
-		   <!-- Adem�s, en lugar de "puerto" ten�is que poner el n�mero de puerto donde est� escuchando vuestro servidor MySQL. -->
-		   <!-- Por �ltimo, reemplazad "bd" con el nombre de BD deseado. -->
-		   <!--
-		   <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-		   <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.01:3306/hablamospBD"/>
-		   <property name="javax.persistence.jdbc.user" value="hablamos"/>
-		   <property name="javax.persistence.jdbc.password" value="nubica"/>		   
-		   -->
-
 		</properties>
 	</persistence-unit>
 </persistence>
