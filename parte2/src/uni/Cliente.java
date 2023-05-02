@@ -12,7 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
 
-@Entity(name = "CLIENTES")
+@Entity(name="CLIENTES")
 public class Cliente {
 
 	@Id
@@ -42,9 +42,17 @@ public class Cliente {
 
 	@ManyToMany
 	@JoinTable(name = "TIENEN",
-			joinColumns = @JoinColumn(name = "DNI"),
-			inverseJoinColumns = @JoinColumn(name = "IBAN"))
+			joinColumns=@JoinColumn(name="DNI"),
+			inverseJoinColumns=@JoinColumn(name="IBAN"))
 	private Set<Cuenta> cuentas = new HashSet<Cuenta> ();
+	
+	/*
+	@ManyToMany
+	@JoinTable(name = "TIENEN",
+			joinColumns=@JoinColumn(name="DNI"),
+			inverseJoinColumns=@JoinColumn(name="IBAN"))
+	public Set<Cuenta> getCuentas() {return cuentas};
+	*/
 
 	// ----------------- Getters & Setters -----------------
 
@@ -123,6 +131,14 @@ public class Cliente {
 	public void removeCuenta(Cuenta c) {
 		cuentas.remove(c);
 	}
+	
+	public Set<Cuenta> getCuentas() {
+		return cuentas;
+	};
+	
+	public void setCuentas(Set<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	};
 	
 	// ----------------- HashCode & Equals -----------------
 

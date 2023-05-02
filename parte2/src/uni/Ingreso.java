@@ -4,13 +4,15 @@ import java.util.Objects;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="INGRESOS")
 @DiscriminatorValue("INGRESO")
-public abstract class Ingresos extends Operacion {
+public class Ingreso extends Operacion {
 
 	@ManyToOne
+	@JoinColumn(name="oficina")
 	private Oficina oficina;
 	
 	// ----------------- Getters & Setters -----------------
@@ -41,7 +43,7 @@ public abstract class Ingresos extends Operacion {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ingresos other = (Ingresos) obj;
+		Ingreso other = (Ingreso) obj;
 		return Objects.equals(oficina, other.oficina);
 	}
 

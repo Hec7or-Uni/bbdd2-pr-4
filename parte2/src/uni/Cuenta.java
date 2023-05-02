@@ -29,10 +29,8 @@ public abstract class Cuenta {
 	@Column(name = "saldo")
 	private Double saldo;
 
-	/*
 	@ManyToMany(mappedBy = "cuentas")
 	private Set<Cliente> clientes = new HashSet<Cliente> ();
-	*/
 
 	@OneToMany(mappedBy = "cuentaEmisora")
     private Set<Operacion> operaciones;
@@ -63,7 +61,6 @@ public abstract class Cuenta {
 		this.saldo = saldo;
 	}
 
-	/*
 	public void addCliente(Cliente a) {
 		clientes.add(a);
 	}
@@ -75,7 +72,6 @@ public abstract class Cuenta {
 	public void removeAsignatura(Cliente a) {
 		clientes.remove(a);
 	}
-	*/
 
 	public Set<Operacion> getOperaciones() {
 		return operaciones;
@@ -104,13 +100,11 @@ public abstract class Cuenta {
 		if (getClass() != obj.getClass())
 			return false;
 		Cuenta other = (Cuenta) obj;
-		/*
 		if (clientes == null) {
 			if (other.clientes != null)
 				return false;
 		} else if (!clientes.equals(other.clientes))
 			return false;
-			*/
 		if (fechaCreacion == null) {
 			if (other.fechaCreacion != null)
 				return false;
@@ -134,18 +128,18 @@ public abstract class Cuenta {
 		return true;
 	}
 
+	/*
 	@Override
 	public String toString() {
 		return "Cuenta [iban=" + iban + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", operaciones="
 				+ operaciones + "]";
 	}
+	*/
 
-	/*
 	@Override
 	public String toString() {
 		return "Cuenta [iban=" + iban + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", clientes="
 				+ clientes + ", operaciones=" + operaciones + "]";
 	}
-	*/
 
 }

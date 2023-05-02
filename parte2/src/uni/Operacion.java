@@ -8,9 +8,10 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "OPERACIONES")
+@Entity(name="OPERACIONES")
 @DiscriminatorColumn(name="tipoOp", 
 discriminatorType = DiscriminatorType.STRING)
 public abstract class Operacion {
@@ -29,6 +30,7 @@ public abstract class Operacion {
 	private String descripcion;
 	
 	@ManyToOne
+	@JoinColumn(name="cuentaEmisora")
 	private Cuenta cuentaEmisora;
 	
 	// ----------------- Getters & Setters -----------------
@@ -41,11 +43,11 @@ public abstract class Operacion {
 		this.codigo = codigo;
 	}
 
-	public String getFechaCreacion() {
+	public String getDescipcion() {
 		return descripcion;
 	}
 
-	public void setFechaCreacion(String fechaCreacion) {
+	public void setDescripcion(String fechaCreacion) {
 		this.descripcion = fechaCreacion;
 	}
 

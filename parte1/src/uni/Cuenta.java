@@ -61,11 +61,11 @@ public abstract class Cuenta {
 		clientes.add(a);
 	}
 	
-	public int totalAsignaturas() {
+	public int totalClientes() {
 		return clientes.size();
 	}
 	
-	public void removeAsignatura(Cliente a) {
+	public void removeCliente(Cliente a) {
 		clientes.remove(a);
 	}
 

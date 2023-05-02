@@ -8,16 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="AHORRO")
 @DiscriminatorValue("AHORRO")
 public class Ahorro extends Cuenta {
 
 	@Column(name="interes", nullable=false)
 	private Double interes;
-	
-	@ManyToOne
-	@JoinColumn(name="oficina", nullable=true)
-	private Oficina oficina;
 	
 	// ----------------- Getters & Setters -----------------
 

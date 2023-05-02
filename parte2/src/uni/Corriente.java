@@ -8,16 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="CORRIENTE")
 @DiscriminatorValue("CORRIENTE")
 public class Corriente extends Cuenta {
 
 	@ManyToOne
 	@JoinColumn(name="oficina", nullable=false)
 	private Oficina oficina;
-	
-	@Column(name="interes", nullable=true)
-	private Double interes;
 
 	// ----------------- Getters & Setters -----------------
 
@@ -27,14 +24,6 @@ public class Corriente extends Cuenta {
 
 	public void setOficina(Oficina oficina) {
 		this.oficina = oficina;
-	}
-	
-	public Double getInteres() {
-		return interes;
-	}
-
-	public void setInteres(Double interes) {
-		this.interes = interes;
 	}
 	
 	// ----------------- HashCode & Equals -----------------

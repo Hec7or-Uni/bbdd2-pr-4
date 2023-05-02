@@ -4,13 +4,15 @@ import java.util.Objects;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="TRANSFERENCIA")
 @DiscriminatorValue("TRANSFERENCIA")
-public abstract class Transferencia extends Operacion {
+public class Transferencia extends Operacion {
 
 	@ManyToOne
+	@JoinColumn(name="cuentaReceptora")
 	private Cuenta cuentaReceptora;
 	
 	// ----------------- Getters & Setters -----------------
