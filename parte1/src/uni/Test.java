@@ -9,6 +9,8 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 public class Test {
 	EntityManagerFactory entityManagerFactory = 
 			Persistence.createEntityManagerFactory("UnidadPersistenciaPractica4");
@@ -161,18 +163,46 @@ public class Test {
 			}
 		}
 	}
-		
-	public void query1() {
-		String q = "select c.nombre from Cliente c";
+	
+	// Saca el nombre de los clientes que no tienen cuentas en ninguna oficina
+	public void JPQL() {
+		String q = "SELECT c.nombre\n"
+				+ "FROM Cliente c \n"
+				+ "WHERE c.dni  NOT IN (\n"
+				+ "  SELECT cc.dni \n"
+				+ "  FROM Cuenta c2 JOIN c2.clientes cc \n"
+				+ "  WHERE c2.oficina IS NOT NULL\n"
+				+ ")";
 		Query query = em.createQuery(q);
 		List<String> res = query.getResultList();
 		System.out.println(res);
 	}
 	
+	// Saca el número de clientes únicos para cada oficina
+	public void sqlNativo() {
+		String q = "SELECT n.CODIGO, COUNT(DISTINCT n.CLIENTES_DNI) as NUM_CLIENTES\n"
+				+ "FROM (\n"
+				+ "    SELECT cc.CLIENTES_DNI, o.CODIGO\n"
+				+ "    FROM CUENTA cu\n"
+				+ "    JOIN OFICINA o ON cu.OFICINA_CODIGO = o.CODIGO\n"
+				+ "    JOIN CUENTA_CLIENTE cc ON cc.CUENTAS_IBAN = cu.IBAN\n"
+				+ "    GROUP BY cc.CLIENTES_DNI, o.CODIGO\n"
+				+ "    ORDER BY o.CODIGO\n"
+				+ ")n\n"
+				+ "GROUP BY n.CODIGO\n"
+				+ "ORDER BY n.CODIGO";
+		Query query = em.createNativeQuery(q);
+		List<Object[]> res = query.getResultList();
+		for (Object[] row : res) {
+		    System.out.println("OFICINA: " + row[0] + ", NUM_CLIENTES: " + row[1]);
+		}
+	}
+		
 	public static void main(String[] args) {
 		Test t = new Test();
 		t.poblate();
-		t.query1();
+		t.JPQL();
+		t.sqlNativo();
 	}
 
 }

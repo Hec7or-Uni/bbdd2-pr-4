@@ -37,6 +37,9 @@ public class Cliente {
 
 	@Column
 	private int edad;
+	
+	@ManyToMany(mappedBy = "clientes", cascade = {CascadeType.ALL})
+	private Set<Cuenta> cuentas = new HashSet<Cuenta>();
 
 	// ----------------- Getters & Setters -----------------
 
@@ -102,6 +105,18 @@ public class Cliente {
 
 	public void setEdad(int edad) {
 		this.edad = edad;
+	}
+	
+	public void addCuenta(Cuenta a) {
+		cuentas.add(a);
+	}
+	
+	public int totalCuenta() {
+		return cuentas.size();
+	}
+	
+	public void removeCuenta(Cuenta a) {
+		cuentas.remove(a);
 	}
 	
 	// ----------------- HashCode & Equals -----------------
