@@ -45,6 +45,14 @@ public class Cliente {
 			joinColumns=@JoinColumn(name="DNI"),
 			inverseJoinColumns=@JoinColumn(name="IBAN"))
 	private Set<Cuenta> cuentas = new HashSet<Cuenta> ();
+	
+	/*
+	@ManyToMany
+	@JoinTable(name = "TIENEN",
+			joinColumns=@JoinColumn(name="DNI"),
+			inverseJoinColumns=@JoinColumn(name="IBAN"))
+	public Set<Cuenta> getCuentas() {return cuentas};
+	*/
 
 	// ----------------- Getters & Setters -----------------
 
