@@ -128,14 +128,6 @@ public abstract class Cuenta {
 		return true;
 	}
 
-	/*
-	@Override
-	public String toString() {
-		return "Cuenta [iban=" + iban + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", operaciones="
-				+ operaciones + "]";
-	}
-	*/
-
 	@Override
 	public String toString() {
 		return "Cuenta [iban=" + iban + ", fechaCreacion=" + fechaCreacion + ", saldo=" + saldo + ", clientes="
